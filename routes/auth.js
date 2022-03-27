@@ -30,27 +30,45 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
 	
 	try {	
+
+		proceed = true;
+		
+		
 		const user = await User.findOne({
 			username: req.body.username
 		});
-		!user && res.status(401).json("Wrong credentials");
+		//!user && res.status(401).json("Wrong credentials")
+		if (!user) {
+			res.status(401).json("Wrong credentials")
+			proceed = false;
+		}
+		
 		const hashedPassword = CryptoJS.AES.decrypt(
-			user.password, 
+		user.password, 
 			process.env.PASS_SEC
 		);
 		const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-		OriginalPassword !== req.body.password && res.status(401).json("Wrong credentials");
-		const accessToken = jwt.sign(
-			{
-				id:user._id, 
-				isAdmin: user.isAdmin,
-			}, 
-			process.env.JWT_SEC,
-			{expiresIn:"3d"}
-		);
-		const {password, ...others} = user ._doc;
+		//OriginalPassword !== req.body.password && res.status(401).json("Wrong credentials");
 
-		res.status(200).json({...others, accessToken});
+		if (OriginalPassword !== req.body.password) {
+			res.status(401).json("Wrong credentials")
+			proceed = false;
+
+		}
+		if (proceed) {
+			const accessToken = jwt.sign(
+				{
+					id:user._id, 
+					isAdmin: user.isAdmin,
+				}, 
+				process.env.JWT_SEC,
+				{expiresIn:"3d"}
+			);
+			const {password, ...others} = user ._doc;
+
+			res.status(200).json({...others, accessToken});
+		}
+		
 	} catch(err) {
 		//console.log(err);
 		res.status(500).json(err);
