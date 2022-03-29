@@ -47,7 +47,9 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
 router.get("/find/:id", async (req, res) => {
 	const query = req.query.new
 	try {
-		const Activity = await Activity.findById(req.params.id);
+		const Activity = await Activity.findById("624328a4f5c041259350b38c");
+		//const Activity = await Activity.findById(req.params.id);
+
 		res.status(200).json( Activity );
 	} catch (err) {
 		res.status(500).json(err);
