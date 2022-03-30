@@ -69,13 +69,31 @@ router.get("/", async (req, res) => {
 				}*/
 			}).sort({ createdAt: -1 }).limit(10); 
 		} else if (qCategory) {
+			console.log("qCategory!!!!!!!!!!!!!");
+			console.log(qCategory);
 			products = await Product.find({
 				category: {
 					$in: [qCategory],
 				},
 			});
 		} else {
-			products = await Product.find();
+			console.log("else!!!!!!!!!!!!!");
+			//products = await Product.find().sort({ createdAt: -1 }).limit(10);
+			products = await Product.find(
+				{
+					category: { 
+						$nin:  ["Part"] 
+					},
+				}	
+				/*{
+				category: {
+					$not: "Part"
+				},
+				tags: { 
+					$not: {$elemMatch: {tag: 'completed'}}
+				}
+			}*/); //.sort({ createdAt: -1 })
+			//products = await Product.find();
 		}
 
 		res.status(200).json( products );
