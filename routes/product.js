@@ -85,15 +85,6 @@ router.get("/", async (req, res) => {
 						$nin:  ["Part"] 
 					},
 				}	
-				/*{
-				category: {
-					$not: "Part"
-				},
-				tags: { 
-					$not: {$elemMatch: {tag: 'completed'}}
-				}
-			}*/); //.sort({ createdAt: -1 })
-			//products = await Product.find();
 		}
 
 		res.status(200).json( products );
