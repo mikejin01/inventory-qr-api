@@ -62,7 +62,7 @@ router.get("/", async (req, res) => {
 			console.log("qNew!!!!!!!!!!!!!");
 			products = await Product.find({
 				category: {
-					$not: ["Part"],
+					$not: {$elemMatch: "Part"},
 				},/*
 				tags: { 
 					$not: {$elemMatch: {tag: 'completed'}}
