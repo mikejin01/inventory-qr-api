@@ -80,13 +80,13 @@ router.get("/", async (req, res) => {
 			console.log("else!!!!!!!!!!!!!");
 			//products = await Product.find().sort({ createdAt: -1 }).limit(10);
 			products = await Product.find(
-				{
-					category: { 
-						$nin:  ["Part"] 
-					},
-				}	
+					{
+						category: { 
+							$nin:  ["Part"] 
+						},
+					}	
+			)
 		}
-
 		res.status(200).json( products );
 	} catch (err) {
 		res.status(500).json(err);
