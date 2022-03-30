@@ -11,7 +11,7 @@ const ProductSchema = new mongoose.Schema(
 		color: { type: Array },
 		price: { type: Number, required: false },
 		cost: { type: Number, required: false },
-		stockQuantity: { type: Number, default: 0 }
+		stockQuantity: { type: Number, default: 0 },
 		type: { type: String, required: false }, //simple, complex, part
 		numberOfBoxes: { type: Number, required: false },
 		children: { type: Array, required: false },
