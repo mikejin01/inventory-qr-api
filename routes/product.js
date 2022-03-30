@@ -59,6 +59,7 @@ router.get("/", async (req, res) => {
 	try {
 		let products;
 		if(qNew) {
+			console.log("qNew!!!!!!!!!!!!!");
 			products = await Product.find({
 				category: {
 					$not: ["Part"],
