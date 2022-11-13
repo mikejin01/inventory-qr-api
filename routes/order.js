@@ -18,6 +18,13 @@ router.post("/", verifyToken, async (req, res) => {
 
 //UPDATE
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+
+
+
+
+
+
+	
 	try{
 		//res.status(200).json("!!!!!!");
 		const updatedOrder = await Order.findByIdAndUpdate(
