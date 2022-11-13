@@ -18,7 +18,7 @@ const ProductSchema = new mongoose.Schema(
 		type: { type: String, required: false }, //simple, complex, part
 		numberOfBoxes: { type: Number, required: false },
 		children: { type: Array, required: false },
-		parents: { type: Array, required: false },
+		parents: { type: Array, required: false }
 	}, 
 	{timestamps: true}
 );
