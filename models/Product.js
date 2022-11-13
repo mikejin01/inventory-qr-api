@@ -12,7 +12,7 @@ const ProductSchema = new mongoose.Schema(
 		price: { type: Number, required: false },
 		cost: { type: Number, required: false },
 		stockQuantity: { type: Number, default: 0 },
-		reservedForCustomers:  { type: Number, default: 0 }
+		reservedForCustomers:  { type: Number, default: 0 },
 		stockQuantityVS: { type: Number, default: 0 },
 		stockQuantityCP: { type: Number, default: 0 },
 		type: { type: String, required: false }, //simple, complex, part
