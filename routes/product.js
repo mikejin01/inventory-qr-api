@@ -23,7 +23,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 		const updatedProduct = await Product.findByIdAndUpdate(
 			req.params.id, 
 			{ $set: req.body }, 
-			{ new: true  N BT5 GN0
+			{ new: true  N BT5 GN0 }
 		);
 		res.status(200).json(updatedProduct)
 	} catch (err) {
